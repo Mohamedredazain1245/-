@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>صناديق سيف ومروان</title>
+<link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Cairo:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#1b1140;--ink:#fff7e6;--seif:#2ec4ff;--marwan:#ff7a3d;--box:#2b1c5e;--bad:#ff3b6b;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b1140}}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Cairo',Tahoma,sans-serif;font-weight:600;min-height:100vh}
+h1{font-family:'Lalezar','Cairo',sans-serif;font-weight:400;font-size:clamp(2.4rem,9vw,4.5rem);margin:0;text-align:center;padding:24px 12px 4px;line-height:1.1}
+.sub{text-align:center;margin:0 12px 20px;opacity:.85}
+main{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:1000px;margin:0 auto;padding:0 12px 24px}
+@media(max-width:700px){main{grid-template-columns:1fr}}
+section{border:3px solid var(--c);border-radius:22px;padding:14px;background:rgba(255,255,255,.04)}
+section.seif{--c:var(--seif)}section.marwan{--c:var(--marwan)}
+h2{font-family:'Lalezar','Cairo',sans-serif;font-weight:400;font-size:2rem;margin:0 0 10px;color:var(--c);display:flex;justify-content:space-between;align-items:baseline}
+.again{font:inherit;font-weight:800;font-size:.95rem;background:var(--c);color:#1b1140;border:0;border-radius:999px;padding:6px 16px;cursor:pointer}.box.dim{opacity:.35;cursor:not-allowed}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.grid button:last-child{grid-column:1/-1}
+.box{font:inherit;color:var(--ink);background:var(--box);border:2px dashed var(--c);border-radius:16px;min-height:96px;padding:10px;cursor:pointer;font-size:1.05rem;display:flex;align-items:center;justify-content:center;text-align:center;transition:transform .15s}
+.box:active{transform:scale(.96)}
+.box:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.box .n{font-family:'Lalezar','Cairo',sans-serif;font-size:2.4rem;color:var(--c)}
+.box.open{background:var(--bad);border:2px solid #fff;cursor:default;animation:pop .35s}
+@keyframes pop{0%{transform:scale(.7) rotate(-4deg)}70%{transform:scale(1.06)}100%{transform:none}}
+@media(prefers-reduced-motion:reduce){.box.open{animation:none}}
+.reset{display:block;margin:0 auto 32px;font:inherit;font-weight:800;font-size:1.1rem;background:var(--ink);color:var(--bg);border:0;border-radius:999px;padding:12px 28px;cursor:pointer}
+.box{position:relative;background:var(--c);border:0;color:#1b1140;min-height:110px;box-shadow:0 6px 0 rgba(0,0,0,.3)}
+.box:not(.open)::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:22px;margin-left:-11px;background:#ffd54a}
+.box:not(.open)::after{content:"";position:absolute;left:0;right:0;top:50%;height:22px;margin-top:-11px;background:#ffd54a}
+.box .n{position:relative;z-index:1;background:#1b1140;color:var(--ink);width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.7rem}
+.bow{position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:2rem;z-index:2;line-height:1}
+.box.open{color:#fff;box-shadow:none}
+footer{text-align:center;font-family:'Lalezar','Cairo',sans-serif;font-size:1.4rem;padding:8px 12px 32px;opacity:.9}
+body{background:#231d17}
+h1{color:#ffd54a;text-shadow:4px 4px 0 #000;letter-spacing:1px}
+section{background:#2e261d;border-radius:6px;border-width:4px;border-style:solid}
+h2{text-shadow:2px 2px 0 #000}
+.box{background:repeating-linear-gradient(90deg,rgba(0,0,0,.06) 0 3px,transparent 3px 7px),#b98a52;border:2px solid #7d5a30;border-radius:4px;color:#2b1a08;box-shadow:0 7px 0 #5e4122}
+.box:not(.open)::before,.box:not(.open)::after{background:var(--c);opacity:.92;box-shadow:inset 0 0 0 2px rgba(0,0,0,.25)}
+.box .n{background:#2b1a08;border-radius:4px;transform:rotate(-6deg);width:50px;font-size:1.9rem;border:2px dashed #ffd54a;color:#ffd54a}
+.bow{display:none}
+.box.open{background:#c2412d;border-color:#fff;color:#fff;font-weight:800}
+.again{border-radius:4px;text-shadow:none}
+footer{border-top:14px solid transparent;border-image:repeating-linear-gradient(45deg,#ffd54a 0 14px,#111 14px 28px) 14;padding-top:18px;color:#ffd54a;text-shadow:2px 2px 0 #000}
+</style>
+</head>
+<body>
+<h1>صناديق سيف ومروان</h1>
+<p class="sub">كل واحد ليه ٥ صناديق. اختار صندوق واحد وشوف اللي جواه.</p>
+<main id="app"></main>
+<footer>مع تحيات أبو القاضي</footer>
+<script>
+var DATA={
+ seif:{name:'سيف',cls:'seif',items:['موحشتكش ساره','سلمى عبد الظاهر حب الطفولة','هتاخدو مغري','أكبر خول','زياد خالي العيال']},
+ marwan:{name:'مروان',cls:'marwan',items:['مريم محي موحشتكش','مريم العبد هتسيبها','البنت اللي خزوقتك','أبو تيتي','علق كبير']}
+};
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function build(){
+ var app=document.getElementById('app');app.innerHTML='';
+ Object.keys(DATA).forEach(function(k){
+  var p=DATA[k];
+  var s=document.createElement('section');s.className=p.cls;
+  var h=document.createElement('h2');h.innerHTML='<span>'+p.name+'</span>';
+  var again=document.createElement('button');again.type='button';again.className='again';again.textContent='حاول تاني';again.hidden=true;
+  h.appendChild(again);
+  var g=document.createElement('div');g.className='grid';
+  function deal(){
+   g.innerHTML='';again.hidden=true;
+   var items=shuffle(p.items);
+   items.forEach(function(t,i){
+    var b=document.createElement('button');b.className='box';b.type='button';
+    b.setAttribute('aria-label','صندوق '+(i+1)+' لـ'+p.name);
+    b.innerHTML='<span class="bow">🎀</span><span class="n">'+(i+1)+'</span>';
+    b.onclick=function(){
+     b.classList.add('open');b.textContent=t;
+     g.querySelectorAll('.box').forEach(function(x){if(x!==b){x.disabled=true;x.classList.add('dim')}});
+     again.hidden=false;
+    };
+    g.appendChild(b);
+   });
+  }
+  again.onclick=deal;
+  deal();
+  s.appendChild(h);s.appendChild(g);app.appendChild(s);
+ });
+}
+build();
+</script>
+</body>
+</html>
